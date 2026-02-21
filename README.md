@@ -1,3 +1,23 @@
+# Vision Inspection System
+
+---
+
+## 🖥 System UI
+
+### Main Inspection UI
+<img src="Main.png" width="900"/>
+
+### Inspection Result UI
+<img src="Report.png" width="900"/>
+
+### Setting UI
+<img src="Set.png" width="900"/>
+
+### Configuration UI
+<img src="Config.png" width="900"/>
+
+---
+
 ## 1. 광학계 구성
 
 ### 📸 카메라
@@ -28,7 +48,6 @@
 
 ### 라이브러리
 - OpenCV
-- 자사 Vision Tool
 - SaigeVision (Deep Learning)
 
 ---
@@ -47,13 +66,42 @@
   - 표면 형상 강조
   - 결함 특징 강조
 
-- 이후 아래 입력 데이터로 활용
-  - Rule-based 검사 알고리즘
-  - 딥러닝 모델 (SaigeVision)
+- 이후 딥러닝 입력 데이터로 활용
 
 ---
 
-## 3. Issue List
+
+## 3. 검사 Sequence Flow
+
+<img src="Sequence.png" width="900"/>
+
+### ① Front 검사
+- Front Trigger 입력 (HIGH)
+  - I/O BUSY 신호 → HIGH
+  - Front 이미지 취득
+  - Front 검사 및 프로세스 수행
+
+### ② Front 검사 결과 처리
+- OK 신호 → HIGH
+- Complete 신호 → HIGH
+
+### ③ Plate 뒤집기 동작 수행
+
+### ④ Back 검사
+- Back Trigger 입력 (HIGH)
+  - I/O BUSY 신호 → HIGH
+  - Back 이미지 취득
+  - Back 검사 및 프로세스 수행
+
+### ⑤ 최종 판정
+- Front / Back 검사 결과 종합
+- OK / NG 판정 수행
+
+### ⑥ 검사 완료 신호 출력
+- Complete 신호 출력
+- OK 또는 NG 신호 출력
+
+  ## 3. Issue List
 
 ### 3.1 I/O 신호 문제
 - I/O 신호 인식 오류 발생
@@ -83,41 +131,3 @@
 - 딥러닝 처리 시간 기준 약 **200 ms 단축**
 
 ---
-
-## 4. 검사 Sequence Flow
-
-### ① Front 검사
-- Front Trigger 입력 (HIGH)
-  - I/O BUSY 신호 → HIGH
-  - Front 이미지 취득
-  - Front 검사 및 프로세스 수행
-
----
-
-### ② Front 검사 결과 처리
-- OK 신호 → HIGH
-- Complete 신호 → HIGH
-
----
-
-### ③ Plate 뒤집기 동작 수행
-
----
-
-### ④ Back 검사
-- Back Trigger 입력 (HIGH)
-  - I/O BUSY 신호 → HIGH
-  - Back 이미지 취득
-  - Back 검사 및 프로세스 수행
-
----
-
-### ⑤ 최종 판정
-- Front / Back 검사 결과 종합
-- OK / NG 판정 수행
-
----
-
-### ⑥ 검사 완료 신호 출력
-- Complete 신호 출력
-- OK 또는 NG 신호 출력
